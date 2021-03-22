@@ -1,0 +1,4 @@
+{
+  "secret": "@123Teste",
+  "saltRounds": 10
+}
