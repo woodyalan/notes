@@ -1,7 +1,6 @@
 const { Router } = require('express');
 const router = Router();
 const controller = require('../controller/default');
-const usuarioController = require('../controller/usuario');
 const { Usuario } = require('../models');
 
 router.get('/:id?', async (req, res) => {

@@ -31,6 +31,11 @@ module.exports = function (sequelize, DataTypes) {
     {
       tableName: 'usuario',
       timestamps: false,
+      hooks: {
+        beforeCreate: (usuario) => {
+          usuario.senha = bcrypt.hashSync(usuario.senha, saltRounds);
+        },
+      },
       defaultScope: {
         attributes: {
           exclude: ['senha'],
@@ -39,11 +44,6 @@ module.exports = function (sequelize, DataTypes) {
       scopes: {
         login: {
           attributes: ['id', 'senha'],
-        },
-      },
-      hooks: {
-        beforeCreate: (usuario) => {
-          usuario.senha = bcrypt.hashSync(usuario.senha, saltRounds);
         },
       },
     }
