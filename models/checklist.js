@@ -21,9 +21,9 @@ module.exports = function (sequelize, DataTypes) {
         allowNull: false,
       },
       concluida: {
-        type: DataTypes.BOOLEAN,
+        type: DataTypes.INTEGER,
         allowNull: false,
-        defaultValue: false,
+        defaultValue: 0,
       },
     },
     {
