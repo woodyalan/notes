@@ -15,7 +15,7 @@ const portaHttps = 4443;
 
 app.use(
   cors({
-    origin: ['http://localhost:8080'],
+    origin: ['http://localhost:3000'],
   })
 );
 app.use(bodyParser.json());

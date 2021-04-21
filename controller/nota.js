@@ -20,31 +20,35 @@ controller.getById = async (id) => {
 };
 
 controller.getByUsuarioId = async (usuarioId, tagName = null) => {
-  let where = null;
-  let required = false;
+  try {
+    let where = null;
+    let required = false;
 
-  if (tagName) {
-    where = { nome: tagName };
-    required = true;
+    if (tagName) {
+      where = { nome: tagName };
+      required = true;
+    }
+
+    return await Nota.findAll({
+      where: {
+        usuarioId,
+      },
+      include: [
+        {
+          model: Checklist,
+          as: 'checklists',
+        },
+        {
+          model: Tag,
+          as: 'tags',
+          where,
+          required,
+        },
+      ],
+    });
+  } catch (error) {
+    console.log(error);
   }
-
-  return await Nota.findAll({
-    where: {
-      usuarioId,
-    },
-    include: [
-      {
-        model: Checklist,
-        as: 'checklists',
-      },
-      {
-        model: Tag,
-        as: 'tags',
-        where,
-        required,
-      },
-    ],
-  });
 };
 
 controller.save = async ({ usuarioId, titulo = null, descricao = null, checklists = [], tags = [] }) => {
