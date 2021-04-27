@@ -27,10 +27,12 @@ router.post('/', async (req, res) => {
   }
 });
 
-router.put('/:id', async (req, res) => {
+router.put('/', async (req, res) => {
   try {
     const { body } = req;
-    const { id } = req.params;
+    const [type, token] = req.headers['authorization'].split(' ');
+
+    const { id } = jwt.decode(token);
 
     const usuario = await controller.edit(Usuario, body, id);
 

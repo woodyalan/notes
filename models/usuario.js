@@ -32,7 +32,7 @@ module.exports = function (sequelize, DataTypes) {
       tableName: 'usuario',
       timestamps: false,
       hooks: {
-        beforeCreate: (usuario) => {
+        beforeValidate: (usuario) => {
           usuario.senha = bcrypt.hashSync(usuario.senha, saltRounds);
         },
       },
