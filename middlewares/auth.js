@@ -7,7 +7,7 @@ module.exports = (req, res, next) => {
   const [type, token] = req.headers['authorization'].split(' ');
 
   jwt.verify(token, secret, (error) => {
-    if (error) return res.status(500).send({ error });
+    if (error) return res.status(401).send({ error });
 
     next();
   });
