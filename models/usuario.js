@@ -33,7 +33,7 @@ module.exports = function (sequelize, DataTypes) {
       timestamps: false,
       hooks: {
         beforeValidate: (usuario) => {
-          usuario.senha = bcrypt.hashSync(usuario.senha, saltRounds);
+          if (usuario.senha) usuario.senha = bcrypt.hashSync(usuario.senha, saltRounds);
         },
       },
       defaultScope: {

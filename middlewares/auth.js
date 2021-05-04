@@ -9,6 +9,8 @@ module.exports = (req, res, next) => {
   jwt.verify(token, secret, (error) => {
     if (error) return res.status(401).send({ error });
 
+    req.token = token;
+
     next();
   });
 };
